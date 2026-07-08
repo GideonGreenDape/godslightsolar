@@ -1,0 +1,25 @@
+import Navbar from './components/Navbar.jsx';
+import Hero from './components/Hero.jsx';
+import Services from './components/Services.jsx';
+import SolarSizer from './components/SolarSizer/SolarSizer.jsx';
+import Portfolio from './components/Portfolio.jsx';
+import Contact from './components/Contact.jsx';
+import Footer from './components/Footer.jsx';
+import WhatsAppButton from './components/WhatsAppButton.jsx';
+
+export default function App() {
+  return (
+    <div className="min-h-screen bg-white dark:bg-brand-green-900">
+      <Navbar />
+      <main>
+        <Hero />
+        <Services />
+        <SolarSizer />
+        <Portfolio />
+        <Contact />
+      </main>
+      <Footer />
+      <WhatsAppButton />
+    </div>
+  );
+}
