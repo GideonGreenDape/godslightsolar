@@ -12,12 +12,12 @@ function Counter({ label, value, min, max, step = 1, onChange, suffix }) {
             onChange(Math.max(min, +(value - step).toFixed(2)));
           }}
           disabled={value <= min}
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-green-100 text-brand-green-700 transition-colors hover:bg-brand-green-200 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white/10 dark:text-white sm:h-7 sm:w-7"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-navy-100 text-brand-navy-700 transition-colors hover:bg-brand-navy-200 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white/10 dark:text-white sm:h-7 sm:w-7"
           aria-label={`Decrease ${label}`}
         >
           <Minus className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
         </button>
-        <span className="w-9 shrink-0 text-center text-sm font-bold text-brand-green-800 dark:text-white sm:w-8">
+        <span className="w-9 shrink-0 text-center text-sm font-bold text-brand-navy-800 dark:text-white sm:w-8">
           {value}
           {suffix}
         </span>
@@ -28,7 +28,7 @@ function Counter({ label, value, min, max, step = 1, onChange, suffix }) {
             onChange(Math.min(max, +(value + step).toFixed(2)));
           }}
           disabled={value >= max}
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-green-100 text-brand-green-700 transition-colors hover:bg-brand-green-200 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white/10 dark:text-white sm:h-7 sm:w-7"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-navy-100 text-brand-navy-700 transition-colors hover:bg-brand-navy-200 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white/10 dark:text-white sm:h-7 sm:w-7"
           aria-label={`Increase ${label}`}
         >
           <Plus className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
@@ -55,13 +55,13 @@ export default function ApplianceCard({ appliance, selected, config, onToggle, o
       className={`relative cursor-pointer overflow-hidden rounded-2xl border-2 p-4 text-left transition-all duration-200 ${
         selected
           ? 'border-brand-yellow-400 bg-brand-yellow-50 shadow-glow dark:bg-brand-yellow-400/10'
-          : 'border-gray-100 bg-white hover:border-brand-green-200 dark:border-white/10 dark:bg-brand-green-800/40'
+          : 'border-gray-100 bg-white hover:border-brand-navy-200 dark:border-white/10 dark:bg-brand-navy-800/40'
       }`}
     >
       <div className="flex items-start justify-between">
         <div
           className={`flex h-11 w-11 items-center justify-center rounded-xl ${
-            selected ? 'bg-brand-yellow-400 text-brand-green-900' : 'bg-brand-green-700 text-brand-yellow-400'
+            selected ? 'bg-brand-yellow-400 text-brand-navy-900' : 'bg-brand-navy-700 text-brand-yellow-400'
           }`}
         >
           <Icon className="h-6 w-6" strokeWidth={2} />
@@ -69,7 +69,7 @@ export default function ApplianceCard({ appliance, selected, config, onToggle, o
         <span
           className={`flex h-5 w-5 items-center justify-center rounded-full border-2 text-[10px] font-bold ${
             selected
-              ? 'border-brand-yellow-400 bg-brand-yellow-400 text-brand-green-900'
+              ? 'border-brand-yellow-400 bg-brand-yellow-400 text-brand-navy-900'
               : 'border-gray-300 dark:border-white/20'
           }`}
         >
@@ -77,7 +77,7 @@ export default function ApplianceCard({ appliance, selected, config, onToggle, o
         </span>
       </div>
 
-      <h4 className="mt-3 text-sm font-bold text-brand-green-800 dark:text-white">{appliance.name}</h4>
+      <h4 className="mt-3 text-sm font-bold text-brand-navy-800 dark:text-white">{appliance.name}</h4>
       <p className="mt-0.5 flex items-center gap-1 text-xs text-gray-400">
         <Zap className="h-3 w-3" /> {appliance.watts}W each
       </p>

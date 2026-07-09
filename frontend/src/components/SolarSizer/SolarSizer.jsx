@@ -78,7 +78,7 @@ export default function SolarSizer() {
   return (
     <section
       id="solar-sizer"
-      className="bg-white py-20 dark:bg-brand-green-900/95 sm:py-28"
+      className="bg-white py-20 dark:bg-brand-navy-900/95 sm:py-28"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
@@ -113,7 +113,7 @@ export default function SolarSizer() {
               hasSelection={hasSelection}
             />
             {exportError && (
-              <p className="mt-3 text-center text-sm font-medium text-red-500">{exportError}</p>
+              <p className="mt-3 text-center text-sm font-medium text-brand-red-500">{exportError}</p>
             )}
           </div>
         </div>

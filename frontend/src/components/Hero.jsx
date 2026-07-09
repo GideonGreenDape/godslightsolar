@@ -1,4 +1,6 @@
 import { ArrowRight, ShieldCheck, Zap, Gauge } from 'lucide-react';
+import { siteConfig } from '../data/siteConfig.js';
+import HeroBackground from './HeroBackground.jsx';
 
 const STATS = [
   { icon: Zap, label: 'Systems Installed', value: '500+' },
@@ -10,18 +12,20 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-gradient-to-b from-brand-green-800 via-brand-green-700 to-brand-green-900 text-white"
+      className="relative overflow-hidden bg-gradient-to-b from-brand-navy-800 via-brand-navy-700 to-brand-navy-900 text-white"
     >
+      <HeroBackground />
+
       <div
-        className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-brand-yellow-400/20 blur-3xl"
+        className="pointer-events-none absolute -right-24 -top-24 z-0 h-80 w-80 rounded-full bg-brand-yellow-400/20 blur-3xl"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-brand-green-400/20 blur-3xl"
+        className="pointer-events-none absolute -left-24 bottom-0 z-0 h-72 w-72 rounded-full bg-brand-navy-400/20 blur-3xl"
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-yellow-300 ring-1 ring-white/20">
             Solar &bull; Automation &bull; Security &bull; Electrical
@@ -33,6 +37,10 @@ export default function Hero() {
               Smart, Reliable Energy
             </span>
           </h1>
+
+          <p className="mx-auto mt-3 max-w-2xl text-xs font-semibold uppercase tracking-wide text-brand-yellow-300 sm:text-sm">
+            {siteConfig.tagline}
+          </p>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-200 sm:text-xl">
             From solar power and battery backup to home automation, CCTV, and electrical wiring —
@@ -49,6 +57,8 @@ export default function Hero() {
               Talk to an Engineer
             </a>
           </div>
+
+          <p className="mt-5 text-xs font-bold tracking-wide text-white">{siteConfig.rcNumber}</p>
         </div>
 
         <div className="mx-auto mt-16 grid max-w-3xl grid-cols-3 gap-4 sm:gap-8">

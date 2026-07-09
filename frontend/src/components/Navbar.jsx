@@ -26,18 +26,18 @@ export default function Navbar() {
     <header
       className={`sticky top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? 'bg-white/95 shadow-md backdrop-blur dark:bg-brand-green-900/95'
-          : 'bg-white dark:bg-brand-green-900'
+          ? 'bg-white/95 shadow-md backdrop-blur dark:bg-brand-navy-900/95'
+          : 'bg-white dark:bg-brand-navy-900'
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6 lg:px-8">
         <a href="#top" className="flex items-center gap-3">
           <img
             src={logo}
             alt={`${siteConfig.name} logo`}
-            className="h-10 w-10 rounded-lg object-cover ring-2 ring-brand-yellow-400/40"
+            className="h-11 w-11 shrink-0 rounded-lg object-cover ring-2 ring-brand-yellow-400/40"
           />
-          <span className="text-lg font-extrabold tracking-tight text-brand-green-800 dark:text-white">
+          <span className="text-lg font-extrabold tracking-tight text-brand-navy-800 dark:text-white">
             {siteConfig.name}
           </span>
         </a>
@@ -48,7 +48,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-gray-600 transition-colors hover:text-brand-green-600 dark:text-gray-200 dark:hover:text-brand-yellow-400"
+              className="text-sm font-medium text-gray-600 transition-colors hover:text-brand-navy-600 dark:text-gray-200 dark:hover:text-brand-yellow-400"
             >
               {link.label}
             </a>
@@ -58,7 +58,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-4 md:flex">
           <a
             href={`tel:${siteConfig.phone}`}
-            className="flex items-center gap-2 text-sm font-semibold text-brand-green-700 dark:text-brand-yellow-400"
+            className="flex items-center gap-2 text-sm font-semibold text-brand-navy-700 dark:text-brand-yellow-400"
           >
             <Phone className="h-4 w-4" />
             {siteConfig.phoneDisplay}
@@ -72,7 +72,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setIsOpen((v) => !v)}
-          className="inline-flex items-center justify-center rounded-md p-2 text-brand-green-800 md:hidden dark:text-white"
+          className="inline-flex items-center justify-center rounded-md p-2 text-brand-navy-800 md:hidden dark:text-white"
           aria-label="Toggle navigation menu"
           aria-expanded={isOpen}
         >
@@ -86,20 +86,20 @@ export default function Navbar() {
           isOpen ? 'max-h-96' : 'max-h-0'
         }`}
       >
-        <nav className="flex flex-col gap-1 border-t border-gray-100 bg-white px-4 py-4 dark:border-white/10 dark:bg-brand-green-900">
+        <nav className="flex flex-col gap-1 border-t border-gray-100 bg-white px-4 py-4 dark:border-white/10 dark:bg-brand-navy-900">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={handleNavClick}
-              className="rounded-lg px-3 py-3 text-base font-medium text-gray-700 hover:bg-brand-green-50 dark:text-gray-100 dark:hover:bg-white/5"
+              className="rounded-lg px-3 py-3 text-base font-medium text-gray-700 hover:bg-brand-navy-50 dark:text-gray-100 dark:hover:bg-white/5"
             >
               {link.label}
             </a>
           ))}
           <a
             href={`tel:${siteConfig.phone}`}
-            className="mt-2 flex items-center gap-2 rounded-lg px-3 py-3 text-base font-semibold text-brand-green-700 dark:text-brand-yellow-400"
+            className="mt-2 flex items-center gap-2 rounded-lg px-3 py-3 text-base font-semibold text-brand-navy-700 dark:text-brand-yellow-400"
           >
             <Phone className="h-5 w-5" />
             {siteConfig.phoneDisplay}

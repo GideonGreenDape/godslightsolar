@@ -18,7 +18,7 @@ function StatCard({ icon: Icon, label, value, sub }) {
 
 export default function ResultsSummary({ totals, settings, onSettingsChange, onExportPdf, onExportText, isExporting, hasSelection }) {
   return (
-    <div className="rounded-3xl bg-gradient-to-br from-brand-green-800 to-brand-green-900 p-6 shadow-xl sm:p-8">
+    <div className="rounded-3xl bg-gradient-to-br from-brand-navy-800 to-brand-navy-900 p-6 shadow-xl sm:p-8">
       <h3 className="text-lg font-bold text-white sm:text-xl">Your Recommended System</h3>
       <p className="mt-1 text-sm text-gray-300">
         Based on {totals.items.length} selected appliance{totals.items.length === 1 ? '' : 's'}.
@@ -100,7 +100,7 @@ export default function ResultsSummary({ totals, settings, onSettingsChange, onE
               className="mt-1 w-full rounded-lg border-none bg-white/10 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-yellow-400"
             >
               {Object.entries(BATTERY_TYPES).map(([key, val]) => (
-                <option key={key} value={key} className="text-brand-green-900">
+                <option key={key} value={key} className="text-brand-navy-900">
                   {val.label}
                 </option>
               ))}
@@ -114,7 +114,7 @@ export default function ResultsSummary({ totals, settings, onSettingsChange, onE
               className="mt-1 w-full rounded-lg border-none bg-white/10 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-yellow-400"
             >
               {VOLTAGE_OPTIONS.map((v) => (
-                <option key={v} value={v} className="text-brand-green-900">
+                <option key={v} value={v} className="text-brand-navy-900">
                   {v}V {v === suggestBatteryVoltage(totals.inverterKw) ? '(suggested)' : ''}
                 </option>
               ))}
