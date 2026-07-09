@@ -25,19 +25,19 @@ export const projects = [
     image: smartOfficeAutomation,
     location: 'Ugheli',
   },
-  {
-    title: 'Estate Perimeter Security',
-    category: 'Electric Fencing',
-    description: '2km electric fence deployment with energizer monitoring across a residential estate.',
-    image: estatePerimeterSecurity,
-    location: '',
-  },
+  // {
+  //   title: 'Estate Perimeter Security',
+  //   category: 'Electric Fencing',
+  //   description: '2km electric fence deployment with energizer monitoring across a residential estate.',
+  //   image: estatePerimeterSecurity,
+  //   location: '',
+  // },
   {
     title: '32-Camera Facility Monitoring',
     category: 'CCTV Surveillance Systems',
     description: 'Remote-access HD CCTV network covering warehouse, gate, and staff entry points.',
     image: facilityMonitoring,
-    location: '',
+    location: 'Delta State',
   },
   {
     title: 'Industrial Panel Upgrade',

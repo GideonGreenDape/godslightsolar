@@ -43,7 +43,7 @@ export default function HeroBackground() {
           }`}
         />
       ))}
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-navy-900/85 via-brand-navy-800/75 to-brand-navy-900/90" />
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-navy-900/55 via-brand-navy-900/35 to-brand-navy-900/65" />
     </div>
   );
 }
