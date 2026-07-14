@@ -16,7 +16,7 @@ function StatCard({ icon: Icon, label, value, sub }) {
   );
 }
 
-export default function ResultsSummary({ totals, settings, onSettingsChange, onExportPdf, onExportText, isExporting, hasSelection }) {
+export default function ResultsSummary({ totals, settings, onSettingsChange, onExportPdf, onExportText, onRequestQuote, isExporting, hasSelection }) {
   return (
     <div className="rounded-3xl bg-gradient-to-br from-brand-navy-800 to-brand-navy-900 p-6 shadow-xl sm:p-8">
       <h3 className="text-lg font-bold text-white sm:text-xl">Your Recommended System</h3>
@@ -131,16 +131,15 @@ export default function ResultsSummary({ totals, settings, onSettingsChange, onE
           className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
         >
           {isExporting ? <Loader2 className="h-4 w-4 animate-spin" /> : <FileDown className="h-4 w-4" />}
-          Download PDF Quote
+          Download PDF
         </button>
         <button
           type="button"
           disabled={!hasSelection}
-          onClick={onExportText}
-          className="btn-secondary w-full disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+          onClick={onRequestQuote}
+          className="w-full rounded-lg bg-brand-yellow-400 px-4 py-2.5 text-center text-sm font-bold text-brand-navy-900 transition-colors hover:bg-brand-yellow-500 sm:w-auto"
         >
-          <FileText className="h-4 w-4" />
-          Download Text Summary
+          Request Official Quote
         </button>
       </div>
 
@@ -152,3 +151,4 @@ export default function ResultsSummary({ totals, settings, onSettingsChange, onE
     </div>
   );
 }
+

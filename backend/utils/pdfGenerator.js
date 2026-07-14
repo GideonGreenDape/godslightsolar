@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const PDFDocument = require('pdfkit');
 
-const BRAND_GREEN = '#0b3d2e';
+const BRAND_NAVY = '#0b1f3d';
 const BRAND_YELLOW = '#f5a623';
 const TEXT_GRAY = '#4b5563';
 const LEFT = 50;
@@ -10,7 +10,7 @@ const LOGO_PATH = path.join(__dirname, '..', '..', 'frontend', 'src', 'asset', '
 const LOGO_SIZE = 56;
 
 function drawHeader(doc, title) {
-  doc.rect(0, 0, doc.page.width, 90).fill(BRAND_GREEN);
+  doc.rect(0, 0, doc.page.width, 90).fill(BRAND_NAVY);
 
   const hasLogo = fs.existsSync(LOGO_PATH);
   if (hasLogo) {
@@ -39,7 +39,7 @@ function drawHeader(doc, title) {
 
 function drawSectionTitle(doc, text) {
   doc.moveDown(0.5);
-  doc.fillColor(BRAND_GREEN).font('Helvetica-Bold').fontSize(13).text(text, LEFT, doc.y);
+  doc.fillColor(BRAND_NAVY).font('Helvetica-Bold').fontSize(13).text(text, LEFT, doc.y);
   doc.moveDown(0.2);
   doc
     .strokeColor(BRAND_YELLOW)
@@ -86,7 +86,7 @@ function generateQuotePdf({ customer, appliances, totals }, res) {
   const tableTop = doc.y;
   const colX = { name: 50, qty: 260, hours: 330, watt: 410, wh: 490 };
 
-  doc.font('Helvetica-Bold').fontSize(10).fillColor(BRAND_GREEN);
+  doc.font('Helvetica-Bold').fontSize(10).fillColor(BRAND_NAVY);
   doc.text('Appliance', colX.name, tableTop);
   doc.text('Qty', colX.qty, tableTop);
   doc.text('Hrs/Day', colX.hours, tableTop);
@@ -142,7 +142,7 @@ function generateQuotePdf({ customer, appliances, totals }, res) {
 
   doc.moveDown(1.5);
   doc
-    .fillColor(BRAND_GREEN)
+    .fillColor(BRAND_NAVY)
     .font('Helvetica-Bold')
     .fontSize(11)
     .text('Get your accurate quote today:', LEFT, doc.y);

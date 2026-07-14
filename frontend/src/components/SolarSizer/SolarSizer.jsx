@@ -5,7 +5,7 @@ import ApplianceGrid from './ApplianceGrid.jsx';
 import ResultsSummary from './ResultsSummary.jsx';
 import MobileEstimateBar from './MobileEstimateBar.jsx';
 import { buildTextReceipt, downloadTextFile } from './textReceipt.js';
-import { downloadQuotePdf } from '../../utils/api.js';
+import { downloadQuotePdf, submitContactForm } from '../../utils/api.js';
 
 const DEFAULT_SETTINGS = {
   peakSunHours: 5,
@@ -19,6 +19,7 @@ export default function SolarSizer() {
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
   const [isExporting, setIsExporting] = useState(false);
   const [exportError, setExportError] = useState('');
+  const [showQuoteForm, setShowQuoteForm] = useState(false);
 
   const totals = useMemo(() => calculateTotals(selections, settings), [selections, settings]);
   const hasSelection = totals.items.length > 0;
@@ -75,6 +76,19 @@ export default function SolarSizer() {
     downloadTextFile('godslight-solars-quote.txt', content);
   };
 
+  const handleRequestQuote = async (formData) => {
+    try {
+      await submitContactForm({
+        ...formData,
+        message: `Quote Request for ${totals.totalKw.toFixed(2)}kW system.\n\nDetails: ${JSON.stringify(totals.items)}`
+      });
+      alert('Quote request sent successfully!');
+      setShowQuoteForm(false);
+    } catch (err) {
+      alert('Failed to send request: ' + err.message);
+    }
+  };
+
   return (
     <section
       id="solar-sizer"
@@ -109,6 +123,7 @@ export default function SolarSizer() {
               onSettingsChange={updateSettings}
               onExportPdf={handleExportPdf}
               onExportText={handleExportText}
+              onRequestQuote={() => setShowQuoteForm(true)}
               isExporting={isExporting}
               hasSelection={hasSelection}
             />
@@ -119,7 +134,32 @@ export default function SolarSizer() {
         </div>
       </div>
 
+      {showQuoteForm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="w-full max-w-lg rounded-2xl bg-white p-8 shadow-xl dark:bg-brand-navy-800">
+            <h3 className="text-xl font-bold dark:text-white">Request Official Quote</h3>
+            <form className="mt-4 space-y-4" onSubmit={(e) => {
+              e.preventDefault();
+              handleRequestQuote({
+                name: e.target.name.value,
+                email: e.target.email.value,
+                phone: e.target.phone.value
+              });
+            }}>
+              <input name="name" placeholder="Full Name" required className="w-full rounded border p-2.5 dark:bg-brand-navy-900 dark:text-white" />
+              <input name="email" type="email" placeholder="Email" required className="w-full rounded border p-2.5 dark:bg-brand-navy-900 dark:text-white" />
+              <input name="phone" placeholder="Phone" className="w-full rounded border p-2.5 dark:bg-brand-navy-900 dark:text-white" />
+              <div className="flex gap-2">
+                <button type="submit" className="flex-1 rounded bg-brand-yellow-400 py-2.5 font-bold text-brand-navy-900">Send Request</button>
+                <button type="button" onClick={() => setShowQuoteForm(false)} className="rounded bg-gray-200 px-4 py-2.5 dark:bg-gray-700 dark:text-white">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       <MobileEstimateBar totals={totals} hasSelection={hasSelection} targetId="solar-results" />
     </section>
   );
 }
+

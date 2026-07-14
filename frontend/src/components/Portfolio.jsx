@@ -10,7 +10,7 @@ export default function Portfolio() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="section-title">Recent Projects</h2>
-          <p className="section-subtitle">A glimpse at the systems we&apos;ve designed and installed.</p>
+          <p className="section-subtitle">A glimpse at the systems we&apos;ve designed and installed as a leading solar company in Nigeria.</p>
         </div>
 
         <div className="relative mt-14" {...pointerHandlers}>
@@ -69,3 +69,4 @@ export default function Portfolio() {
     </section>
   );
 }
+
