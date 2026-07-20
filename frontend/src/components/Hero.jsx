@@ -31,15 +31,12 @@ export default function Hero() {
             Solar &bull; Automation &bull; Security &bull; Electrical
           </span>
 
-          <h1 className="mt-6 animate-fade-up text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            Power Your World with{' '}
-            <span className="bg-gradient-to-r from-brand-yellow-300 to-brand-yellow-400 bg-clip-text text-transparent">
-              Smart, Reliable Energy
-            </span>
+          <h1 className="mt-6 animate-fade-up text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-4xl">
+            Powering Homes. Securing Businesses. Connecting the Future.
           </h1>
 
           <p className="mx-auto mt-3 max-w-2xl text-xs font-semibold uppercase tracking-wide text-brand-yellow-300 sm:text-sm">
-            {siteConfig.tagline}
+            Godslight Solars & Technical Services
           </p>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-200 sm:text-xl">
@@ -77,3 +74,4 @@ export default function Hero() {
     </section>
   );
 }
+

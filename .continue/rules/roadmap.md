@@ -12,7 +12,7 @@ description: Active development tasks and improvements for the GITSE platform.
 
 ## Branding & Homepage
 - [ ] Overhaul Hero section with high-quality solar install background and new headline: "Powering Homes. Securing Businesses. Connecting the Future."
-- [ ] Create dedicated landing pages for: Solar, CCTV, Electric Fence, Starlink, Smart Home.
+- [ ] Implement "Dynamic Service Page Routing" using a single template component and URL parameters (e.g., /service/:slug) to scale service-specific landing pages.
 
 ## SEO & Content
 - [ ] Integrate local SEO keywords: "Solar installation in Delta State", "Solar company in Nigeria".
