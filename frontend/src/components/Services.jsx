@@ -12,8 +12,13 @@ export default function Services() {
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map(({ icon: Icon, title, description, slug }) => (
-            <a key={title} href={`/service/${slug}`} className="card group p-6 sm:p-8 block hover:border-brand-navy-300">
+          {services.map(({ icon: Icon, title, description, slug }, index) => (
+            <a
+              key={title}
+              href={`/service/${slug}`}
+              className="card group p-6 sm:p-8 block hover:border-brand-navy-300 animate-fade-up"
+              style={{ animationDelay: `${index * 100}ms`, opacity: 0, animationFillMode: 'forwards' }}
+            >
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-navy-700 text-brand-yellow-400 transition-transform duration-200 group-hover:scale-110">
                 <Icon className="h-6 w-6" strokeWidth={2} />
               </div>

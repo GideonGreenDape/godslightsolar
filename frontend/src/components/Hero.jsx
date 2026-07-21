@@ -31,7 +31,7 @@ export default function Hero() {
             Solar &bull; Automation &bull; Security &bull; Electrical
           </span>
 
-          <h1 className="mt-6 animate-fade-up text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-4xl">
+          <h1 className="mt-6 animate-fade-up text-2xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
             Powering Homes. Securing Businesses. Connecting the Future.
           </h1>
 
@@ -39,7 +39,7 @@ export default function Hero() {
             Godslight Solars & Technical Services
           </p> */}
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-200 sm:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-base text-gray-200 sm:text-xl">
             From solar power and battery backup to home automation, CCTV, and electrical wiring —
             we design and install technical systems that just work. Start with a free instant
             solar size estimate below.
@@ -58,7 +58,7 @@ export default function Hero() {
           <p className="mt-5 text-xs font-bold tracking-wide text-white">{siteConfig.rcNumber}</p>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-3xl grid-cols-3 gap-4 sm:gap-8">
+        <div className="mx-auto mt-16 hidden grid-cols-3 gap-4 sm:grid sm:gap-8">
           {STATS.map(({ icon: Icon, label, value }) => (
             <div
               key={label}
