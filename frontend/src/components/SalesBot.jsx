@@ -82,7 +82,7 @@ export default function SalesBot() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 right-4 sm:right-6 z-50">
       {!isOpen && (
         <button 
           onClick={() => setIsOpen(true)}
@@ -94,7 +94,7 @@ export default function SalesBot() {
       )}
 
       {isOpen && (
-        <div className="flex h-[500px] w-80 flex-col overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-brand-navy-800 border border-gray-200 dark:border-white/10">
+        <div className="fixed inset-x-2 bottom-20 top-20 sm:absolute sm:inset-auto sm:bottom-20 sm:right-0 sm:h-[500px] sm:w-80 flex flex-col overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-brand-navy-800 border border-gray-200 dark:border-white/10">
           <div className="flex items-center justify-between bg-brand-navy-900 p-4 text-white">
             <h3 className="font-bold">GITSE Sales Bot</h3>
             <button onClick={() => setIsOpen(false)}><X className="h-5 w-5" /></button>

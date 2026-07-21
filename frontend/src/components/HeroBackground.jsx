@@ -13,7 +13,7 @@ const HERO_IMAGES = [
 ];
 const INITIAL_DELAY_MS = 1000; // Reduced initial delay to show images faster
 const SLIDE_MS = 4000; // Faster rotation
-export default function HeroBackground() {
+export default function  HeroBackground() {
   const [started, setStarted] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -40,6 +40,7 @@ export default function HeroBackground() {
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in-out ${
             started && i === activeIndex ? 'opacity-100' : 'opacity-0'
           }`}
+          style={{ objectPosition: '60% 50%' }}
         />
       ))}
       {/* Darker overlay to ensure high contrast for white text */}
