@@ -12,7 +12,7 @@ export const services = [
   {
     slug: 'home-automation',
     icon: Cpu,
-    title: 'Home & Industrial Automation',
+    title: 'Home Automation',
     description:
       'Smart control for lighting, appliances, gates, and industrial processes — manage your space from your phone.',
     longDescription: 'Transform your property with our advanced automation solutions. From smart lighting and climate control to automated gate systems and industrial process monitoring, we provide seamless control from any device.'
@@ -36,7 +36,7 @@ export const services = [
   {
     slug: 'electrical-wiring',
     icon: Cable,
-    title: 'Electrical Wiring',
+    title: 'Industrial & Electrical Wiring',
     description:
       'Certified wiring, panel upgrades, and installation services for new builds, renovations, and industrial sites.',
     longDescription: 'Our certified electricians handle everything from residential rewiring to complex industrial distribution panels. We ensure all work meets strict safety standards to keep your property fire-safe and compliant.'
