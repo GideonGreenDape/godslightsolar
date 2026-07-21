@@ -128,7 +128,7 @@ export default function ResultsSummary({ totals, settings, onSettingsChange, onE
           type="button"
           disabled={!hasSelection || isExporting}
           onClick={onExportPdf}
-          className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+          className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isExporting ? <Loader2 className="h-4 w-4 animate-spin" /> : <FileDown className="h-4 w-4" />}
           Download PDF
@@ -137,12 +137,11 @@ export default function ResultsSummary({ totals, settings, onSettingsChange, onE
           type="button"
           disabled={!hasSelection}
           onClick={onRequestQuote}
-          className="w-full rounded-lg bg-brand-yellow-400 px-4 py-2.5 text-center text-sm font-bold text-brand-navy-900 transition-colors hover:bg-brand-yellow-500 sm:w-auto"
+          className="flex-1 rounded-lg bg-brand-yellow-400 px-4 py-2 text-center text-sm font-bold text-brand-navy-900 transition-colors hover:bg-brand-yellow-500 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Request Official Quote
         </button>
       </div>
-
       {!hasSelection && (
         <p className="mt-3 text-center text-xs text-gray-400 sm:text-left">
           Select at least one appliance above to see your recommendation.

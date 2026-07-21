@@ -7,7 +7,7 @@ import Testimonials from './components/Testimonials.jsx';
 import Resources from './components/Resources.jsx';
 import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
-import WhatsAppButton from './components/WhatsAppButton.jsx';
+import SalesBot from './components/SalesBot.jsx';
 
 export default function App() {
   return (
@@ -23,7 +23,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
-      <WhatsAppButton />
+      <SalesBot />
     </div>
   );
 }

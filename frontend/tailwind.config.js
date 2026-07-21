@@ -1,36 +1,25 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',
-  content: ['./index.html', './src/**/*.{js,jsx}'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
         brand: {
           navy: {
-            50: '#eaf0fa',
-            100: '#c8d8f0',
-            200: '#8faedc',
-            300: '#5480c2',
-            400: '#27569d',
-            500: '#0f3a7a',
-            600: '#0b2d5f',
-            700: '#0b1f3d',
-            800: '#08172e',
-            900: '#050f1d',
+            400: '#1e3a8a',
+            700: '#1e293b',
+            800: '#0f172a',
+            900: '#020617',
           },
           yellow: {
-            50: '#fff8e8',
-            100: '#ffedc2',
-            200: '#ffdb8a',
-            300: '#ffc24f',
-            400: '#f5a623',
-            500: '#e08e0b',
-            600: '#b96f08',
-            700: '#8f550a',
+            300: '#fde047',
+            400: '#fbbf24',
+            500: '#f59e0b',
           },
           red: {
-            500: '#f34e3f',
-            600: '#f02614',
+            500: '#ef4444',
+            600: '#dc2626',
           },
         },
       },
@@ -51,5 +40,8 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };
+

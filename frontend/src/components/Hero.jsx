@@ -35,9 +35,9 @@ export default function Hero() {
             Powering Homes. Securing Businesses. Connecting the Future.
           </h1>
 
-          <p className="mx-auto mt-3 max-w-2xl text-xs font-semibold uppercase tracking-wide text-brand-yellow-300 sm:text-sm">
+          {/* <p className="mx-auto mt-3 max-w-2xl text-xs font-semibold uppercase tracking-wide text-brand-yellow-300 sm:text-sm">
             Godslight Solars & Technical Services
-          </p>
+          </p> */}
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-200 sm:text-xl">
             From solar power and battery backup to home automation, CCTV, and electrical wiring —

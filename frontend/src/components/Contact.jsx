@@ -18,6 +18,16 @@ export default function Contact() {
     e.preventDefault();
     setStatus('loading');
     setError('');
+
+    // Package form data for WhatsApp
+    const waText = `New Inquiry from ${form.name}
+Phone: ${form.phone}
+Email: ${form.email}
+Message: ${form.message}`;
+
+    // Open WhatsApp with the populated inquiry
+    window.open(`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(waText)}`, '_blank');
+
     try {
       await submitContactForm(form);
       setStatus('success');
@@ -178,3 +188,4 @@ export default function Contact() {
     </section>
   );
 }
+

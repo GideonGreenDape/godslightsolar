@@ -7,6 +7,7 @@ const rateLimit = require('express-rate-limit');
 
 const contactRouter = require('./routes/contact');
 const quoteRouter = require('./routes/quote');
+const chatRouter = require('./routes/chat');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -25,6 +26,7 @@ app.use('/api', apiLimiter);
 
 app.use('/api/contact', contactRouter);
 app.use('/api/quote', quoteRouter);
+app.use('/api/chat', chatRouter);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
@@ -47,3 +49,4 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Godslight Solars API listening on port ${PORT} (${isProduction ? 'production' : 'development'})`);
 });
+

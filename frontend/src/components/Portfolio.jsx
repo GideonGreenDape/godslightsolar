@@ -27,9 +27,9 @@ export default function Portfolio() {
               >
                 <img src={project.image} alt={project.title} className="h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
-                <p className="absolute bottom-4 left-4 right-4 text-sm font-semibold text-white sm:text-base">
+                {/* <p className="absolute bottom-4 left-4 right-4 text-sm font-semibold text-white sm:text-base">
                   Work done in {project.location || 'this location'}
-                </p>
+                </p> */}
               </div>
             ))}
           </div>
