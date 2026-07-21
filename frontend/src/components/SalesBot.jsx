@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown';
 export default function SalesBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'assistant', text: "Hello! Welcome to Godslight Solars. I'm your AI Sales Assistant. What service can I help you with today?" }
+    { role: 'assistant', text: "Hello! Welcome to Godslight Innovations Technology and Solar Energy. I'm your AI Sales Assistant. What service can I help you with today?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
