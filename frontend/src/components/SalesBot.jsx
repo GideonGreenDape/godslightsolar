@@ -96,7 +96,7 @@ export default function SalesBot() {
       {isOpen && (
         <div className="fixed inset-x-2 bottom-20 top-20 sm:absolute sm:inset-auto sm:bottom-20 sm:right-0 sm:h-[500px] sm:w-80 flex flex-col overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-brand-navy-800 border border-gray-200 dark:border-white/10">
           <div className="flex items-center justify-between bg-brand-navy-900 p-4 text-white">
-            <h3 className="font-bold">GITSE Sales Bot</h3>
+            <h3 className="font-bold text-xs sm:text-sm">Godslight Innovations Technology & Solar Energy</h3>
             <button onClick={() => setIsOpen(false)}><X className="h-5 w-5" /></button>
           </div>
           
