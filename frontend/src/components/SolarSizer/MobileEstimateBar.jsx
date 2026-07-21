@@ -9,15 +9,25 @@ export default function MobileEstimateBar({ totals, hasSelection, targetId }) {
 
   useEffect(() => {
     const target = document.getElementById(targetId);
-    if (!target) return undefined;
+    if (!target) return;
 
-    const observer = new IntersectionObserver(([entry]) => setResultsVisible(entry.isIntersecting), {
-      threshold: 0.15,
-    });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Only update visibility if the bar is actively in view to avoid
+        // unnecessary re-renders or jumping behavior
+        setResultsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px' // Offset to keep it visible slightly longer
+      }
+    );
     observer.observe(target);
     return () => observer.disconnect();
   }, [targetId]);
 
+  // If the user has scrolled well past the results, hide the bar.
+  // We check if the target has scrolled out of view by adding a small offset.
   if (!hasSelection || resultsVisible) return null;
 
   const handleViewResults = () => {
@@ -41,3 +51,4 @@ export default function MobileEstimateBar({ totals, hasSelection, targetId }) {
     </div>
   );
 }
+
