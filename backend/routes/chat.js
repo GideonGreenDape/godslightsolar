@@ -83,15 +83,16 @@ router.post("/capture-lead", async (req, res) => {
     const conversationText = conversation.map(m => `${m.role.toUpperCase()}: ${m.text}`).join('\n\n');
 
     try {
-        await transporter.sendMail({
+        // Asynchronously send the email to avoid blocking the frontend
+        transporter.sendMail({
             from: process.env.EMAIL_USER,
             to: process.env.ADMIN_EMAIL || 'glightise@gmail.com',
             subject: 'New Sales Lead from AI Chatbot',
             text: `A new prospect has been qualified by the AI.\n\nConversation Details:\n${conversationText}`
-        });
+        }).catch(err => console.error("Background email send failed:", err));
         res.json({ success: true });
     } catch (error) {
-        console.error("Email send failed:", error);
+        console.error("Email setup failed:", error);
         res.status(500).json({ error: "Failed to send lead email" });
     }
 });
