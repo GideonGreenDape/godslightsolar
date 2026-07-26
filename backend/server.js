@@ -12,8 +12,6 @@ const empowermentRouter = require('./routes/empowerment');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const isProduction = process.env.NODE_ENV === 'production';
-
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
 
@@ -38,21 +36,12 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
-if (isProduction) {
-  const frontendDist = path.join(__dirname, '..', 'frontend', 'dist');
-  app.use(express.static(frontendDist));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(frontendDist, 'index.html'));
-  });
-}
-
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(err.status || 500).json({ error: err.message || 'Internal server error' });
 });
 
 app.listen(PORT, () => {
-  console.log(`Godslight Solars API listening on port ${PORT} (${isProduction ? 'production' : 'development'})`);
+  console.log(`Godslight Solars API listening on port ${PORT}`);
 });
 
