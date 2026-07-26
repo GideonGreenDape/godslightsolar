@@ -54,7 +54,7 @@ export default function SalesBot({ isOverlay = true }) {
       // Check for prospect signal
       if (reply.includes("PROSPECT_READY")) {
         setShowWhatsApp(true);
-        reply = reply.replace("PROSPECT_READY", "");
+        reply = reply.replace(/PROSPECT_READY/g, "");
 
         // Auto-send email lead capture
         await fetch(`${API_BASE}/api/chat/capture-lead`, {
