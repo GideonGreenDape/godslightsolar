@@ -1,18 +1,36 @@
 import { useEffect, useState } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, ChevronDown } from 'lucide-react';
 import { siteConfig } from '../data/siteConfig.js';
 import logo from '../asset/GodslightLogo.jfif';
+import { Link, useLocation } from 'react-router-dom';
 
 const NAV_LINKS = [
-  { label: 'Services', href: '#services' },
-  { label: 'Solar Sizer', href: '#solar-sizer' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Solar Sizer', href: '/#solar-sizer' },
+  {
+    label: 'Company',
+    subLinks: [
+      { label: 'About Us', href: '/about' },
+      { label: 'Careers', href: '/careers' },
+      { label: 'Projects', href: '/projects' },
+    ]
+  },
+  {
+    label: 'Media',
+    subLinks: [
+      { label: 'Photos', href: '/photos' },
+      { label: 'Videos', href: '/videos' },
+    ]
+  },
+  { label: 'News', href: '/news' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [openSubmenu, setOpenSubmenu] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -20,18 +38,24 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleNavClick = () => setIsOpen(false);
+  const handleNavClick = () => {
+    setIsOpen(false);
+    setOpenSubmenu(null);
+  };
+
+  const isActive = (href) => location.pathname === href.replace('/#', '/');
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-colors duration-300 ${
-        scrolled
-          ? 'bg-white/95 shadow-md backdrop-blur dark:bg-brand-navy-900/95'
-          : 'bg-white dark:bg-brand-navy-900'
-      }`}
-    >
+    <>
+      <header
+        className={`sticky top-0 z-50 transition-colors duration-300 ${
+          scrolled
+            ? 'bg-white/95 shadow-md backdrop-blur dark:bg-brand-navy-900/95'
+            : 'bg-white dark:bg-brand-navy-900'
+        }`}
+      >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6 lg:px-8">
-        <a href="#top" className="flex items-center gap-3">
+        <a href="/" className="flex items-center gap-3">
           <img
             src={logo}
             alt={`${siteConfig.name} logo`}
@@ -43,72 +67,65 @@ export default function Navbar() {
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-6 md:flex">
           {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-gray-600 transition-colors hover:text-brand-navy-600 dark:text-gray-200 dark:hover:text-brand-yellow-400"
-            >
-              {link.label}
-            </a>
+            link.subLinks ? (
+              <div key={link.label} className="relative group">
+                <button className="flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-brand-navy-600 dark:text-gray-200">
+                  {link.label} <ChevronDown className="h-4 w-4" />
+                </button>
+                <div className="absolute top-full left-0 w-40 bg-white shadow-lg rounded-lg py-2 hidden group-hover:block dark:bg-brand-navy-800 border border-gray-100 dark:border-brand-navy-700">
+                    {link.subLinks.map(sub => (
+                        <Link key={sub.label} to={sub.href} className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-brand-navy-700">{sub.label}</Link>
+                    ))}
+                </div>
+              </div>
+            ) : (
+              <Link key={link.label} to={link.href} className={`text-sm font-medium transition-colors ${isActive(link.href) ? 'text-brand-navy-800 font-bold' : 'text-gray-600 dark:text-gray-200'}`}>{link.label}</Link>
+            )
           ))}
         </nav>
 
-        <div className="hidden items-center gap-4 md:flex">
-          <a
-            href={`tel:${siteConfig.phone}`}
-            className="flex items-center gap-2 text-sm font-semibold text-brand-navy-700 dark:text-brand-yellow-400"
-          >
-            <Phone className="h-4 w-4" />
-            {siteConfig.phoneDisplay}
-          </a>
-          <a href="#solar-sizer" className="btn-primary !px-5 !py-2.5 text-sm">
-            Size My System
-          </a>
+          <button type="button" onClick={() => setIsOpen(true)} className="md:hidden p-2 text-brand-navy-800 dark:text-white">
+            <Menu className="h-7 w-7" />
+          </button>
         </div>
+      </header>
 
-        {/* Mobile hamburger */}
-        <button
-          type="button"
-          onClick={() => setIsOpen((v) => !v)}
-          className="inline-flex items-center justify-center rounded-md p-2 text-brand-navy-800 md:hidden dark:text-white"
-          aria-label="Toggle navigation menu"
-          aria-expanded={isOpen}
-        >
-          {isOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
-        </button>
+      {/* Slide-in Mobile menu */}
+      <div className={`fixed inset-0 z-[60] bg-white dark:bg-brand-navy-900 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="flex flex-col h-full p-6">
+            <div className="flex justify-between mb-10 items-center">
+                <div className="flex items-center gap-3">
+                    <img src={logo} className="h-10 w-10 rounded-lg object-cover" />
+                    <span className="font-bold text-sm">{siteConfig.name}</span>
+                </div>
+                <button onClick={() => setIsOpen(false)}><X className="h-8 w-8" /></button>
+            </div>
+            <nav className="flex flex-col gap-6">
+                {NAV_LINKS.map((link) => (
+                    link.subLinks ? (
+                        <div key={link.label}>
+                            <button 
+                                onClick={() => setOpenSubmenu(openSubmenu === link.label ? null : link.label)} 
+                                className={`text-xs font-normal flex justify-between w-full transition-colors ${openSubmenu === link.label ? 'text-orange-600' : 'dark:text-white'}`}
+                            >
+                                {link.label} <ChevronDown className={`h-4 w-4 transition-transform ${openSubmenu === link.label ? 'rotate-180 text-orange-600' : ''}`} />
+                            </button>
+                            {openSubmenu === link.label && (
+                                <div className="pl-4 mt-3 flex flex-col gap-3">
+                                    {link.subLinks.map(sub => <Link key={sub.label} to={sub.href} onClick={handleNavClick} className={`text-xs ${location.pathname === sub.href ? 'text-brand-navy-800 font-semibold' : 'text-gray-600'}`}>{sub.label}</Link>)}
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <Link key={link.label} to={link.href} onClick={handleNavClick} className={`text-xs font-normal ${isActive(link.href) ? 'text-brand-navy-800 font-semibold' : ''}`}>{link.label}</Link>
+                    )
+                ))}
+            </nav>
+        </div>
       </div>
-
-      {/* Mobile menu */}
-      <div
-        className={`overflow-hidden transition-[max-height] duration-300 ease-in-out md:hidden ${
-          isOpen ? 'max-h-96' : 'max-h-0'
-        }`}
-      >
-        <nav className="flex flex-col gap-1 border-t border-gray-100 bg-white px-4 py-4 dark:border-white/10 dark:bg-brand-navy-900">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={handleNavClick}
-              className="rounded-lg px-3 py-3 text-base font-medium text-gray-700 hover:bg-brand-navy-50 dark:text-gray-100 dark:hover:bg-white/5"
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href={`tel:${siteConfig.phone}`}
-            className="mt-2 flex items-center gap-2 rounded-lg px-3 py-3 text-base font-semibold text-brand-navy-700 dark:text-brand-yellow-400"
-          >
-            <Phone className="h-5 w-5" />
-            {siteConfig.phoneDisplay}
-          </a>
-          <a href="#solar-sizer" onClick={handleNavClick} className="btn-primary mt-2 w-full">
-            Size My System
-          </a>
-        </nav>
-      </div>
-    </header>
+    </>
   );
 }
+

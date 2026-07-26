@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const nodemailer = require('nodemailer');
 
 // Safely initialize using environment variables
 const apiKey = process.env.GEMINI_API_KEY;
@@ -29,8 +30,18 @@ router.post("/", async (req, res) => {
           {
             text: `You are the official AI Sales and Technical Assistant for Godslight Solars & Technical Services (GITSE), located and operating in Delta State, Nigeria. 
           Your job is to assist clients with inquiries regarding Solar Power systems, Inverters, CCTV Security, Starlink installations, and Smart Home/Industrial Automation services. 
-          NEVER say you are just an AI that cannot perform physical services. GITSE provides these professional engineering and installation services directly. 
-          Always be professional, polite, and helpful. Guide customers through sizing appliances, selecting solar/automation equipment, and smoothly direct them to continue on WhatsApp (number 2347064110671) for final quotes and site inspections.`,
+
+          GUIDELINES:
+          1. Provide complete, helpful responses. Do not cut off sentences.
+          2. All responses should be professional, polite, and helpful. Avoid saying you are just an AI that cannot perform physical services.
+          3. Ask for the prospect's name and location in Delta State,phone number or their general technical requirement.
+          4. Once you have at least their name/location and a clear intent (what they want to install), end your response with exactly: "PROSPECT_READY"
+          5. If the user asks for a quote, provide a general estimate based on typical costs in Delta State, Nigeria, but do not provide exact pricing without further details.
+          6. If the user asks for a site visit or installation, politely inform them that a physical inspection is required and that a technician will contact them after they provide their details.
+          7. Once you have at least their name/location and a clear intent (what they want to install), end your response with exactly: "PROSPECT_READY"
+          NEVER say you are just an AI that cannot perform physical services. Always be professional, polite, and helpful.
+          8. All your response must be complete and all in 100 words or less. Do not introduce the company the user already knows. Do not exceed 100 words in your response. so you have to be very concise and to the point. If you need more information, ask for it in a polite and professional manner.`,
+          
           },
         ],
       },
@@ -39,8 +50,8 @@ router.post("/", async (req, res) => {
     const chat = model.startChat({
       history: sanitizedHistory,
       generationConfig: {
-        maxOutputTokens: 150, // Keeps replies snappy and fast
-        temperature: 0.7, // Focused and relevant output
+        maxOutputTokens: 500, // Increased to ensure longer, complete responses
+        temperature: 0.7,
       },
     });
 
@@ -56,4 +67,34 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Setup for lead capture email
+router.post("/capture-lead", async (req, res) => {
+    const { conversation } = req.body;
+
+    // Simple email transport setup (using environment variables for security)
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+    });
+
+    const conversationText = conversation.map(m => `${m.role.toUpperCase()}: ${m.text}`).join('\n\n');
+
+    try {
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: process.env.ADMIN_EMAIL || 'glightise@gmail.com',
+            subject: 'New Sales Lead from AI Chatbot',
+            text: `A new prospect has been qualified by the AI.\n\nConversation Details:\n${conversationText}`
+        });
+        res.json({ success: true });
+    } catch (error) {
+        console.error("Email send failed:", error);
+        res.status(500).json({ error: "Failed to send lead email" });
+    }
+});
+
 module.exports = router;
+

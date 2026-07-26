@@ -48,3 +48,34 @@ export const tips = [
   }
 ];
 
+export const newsData = [
+  {
+    id: 1,
+    slug: "expanding-to-asaba",
+    title: "Godslight Solars Expands to Asaba",
+    subheader: "Business Growth • June 15, 2024",
+    description: "We are excited to announce the opening of our new service center in Asaba, bringing reliable solar solutions closer to you.",
+    content: (
+      <>
+        <p>Godslight Innovations Technology & Solar Energy is proud to announce its further expansion into the capital city of Delta State, Asaba. This move is part of our strategic goal to ensure every household in Nigeria has access to clean and affordable energy.</p>
+        <p className="mt-4">Our new office will serve as a hub for technical support, equipment sales, and consultation services. We invite all residents of Asaba and neighboring towns to visit us and explore our range of high-fidelity solar products.</p>
+      </>
+    ),
+    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 2,
+    slug: "new-battery-technology-2024",
+    title: "Revolutionary Battery Tech Arrives",
+    subheader: "Product Launch • May 10, 2024",
+    description: "Discover the latest Lithium Iron Phosphate (LiFePO4) batteries now available for all our premium solar installations.",
+    content: (
+      <>
+        <p>We are introducing the latest generation of LiFePO4 batteries to our customers. These batteries offer longer lifecycles, higher safety standards, and better performance in the Nigerian climate compared to traditional lead-acid batteries.</p>
+        <p className="mt-4">Our engineering team has rigorously tested these units to ensure they meet the high-fidelity standards Godslight is known for. Upgrade your existing system or start your solar journey with the best storage technology available.</p>
+      </>
+    ),
+    image: "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=800&auto=format&fit=crop"
+  }
+];
+

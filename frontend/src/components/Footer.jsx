@@ -20,6 +20,7 @@ export default function Footer() {
               <span className="text-lg font-extrabold text-white">{siteConfig.name}</span>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-gray-400">{siteConfig.tagline}</p>
+            <p className="mt-2 text-xs font-bold text-brand-yellow-400 uppercase tracking-widest">{siteConfig.motto}</p>
           </div>
 
           <div>
@@ -63,7 +64,6 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-
         <div className="mt-12 border-t border-white/10 pt-6 text-center text-xs text-gray-500">
           &copy; {year} {siteConfig.name}. All rights reserved.
         </div>
@@ -71,3 +71,4 @@ export default function Footer() {
     </footer>
   );
 }
+

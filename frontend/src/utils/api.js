@@ -1,5 +1,7 @@
 const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
 
+export { API_BASE };
+
 export async function submitContactForm(payload) {
   const res = await fetch(`${API_BASE}/api/contact`, {
     method: 'POST',
@@ -36,3 +38,4 @@ export async function downloadQuotePdf(payload) {
   link.remove();
   window.URL.revokeObjectURL(url);
 }
+

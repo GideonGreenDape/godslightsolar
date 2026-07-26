@@ -8,6 +8,7 @@ const rateLimit = require('express-rate-limit');
 const contactRouter = require('./routes/contact');
 const quoteRouter = require('./routes/quote');
 const chatRouter = require('./routes/chat');
+const empowermentRouter = require('./routes/empowerment');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -27,6 +28,11 @@ app.use('/api', apiLimiter);
 app.use('/api/contact', contactRouter);
 app.use('/api/quote', quoteRouter);
 app.use('/api/chat', chatRouter);
+app.use('/api/empowerment', empowermentRouter);
+
+app.get('/api/ping', (req, res) => {
+  res.status(200).json({ message: 'pong' });
+});
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });

@@ -1,6 +1,8 @@
-import { ArrowRight, ShieldCheck, Zap, Gauge } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowRight, ShieldCheck, Zap, Gauge, X } from 'lucide-react';
 import { siteConfig } from '../data/siteConfig.js';
 import HeroBackground from './HeroBackground.jsx';
+import certImg from '../asset/businessCertificate/caccertifcate.jpg';
 
 const STATS = [
   { icon: Zap, label: 'Systems Installed', value: '500+' },
@@ -9,13 +11,32 @@ const STATS = [
 ];
 
 export default function Hero() {
+  const [showCert, setShowCert] = useState(false);
+
   return (
     <section
       id="top"
       className="relative overflow-hidden bg-gradient-to-b from-brand-navy-800 via-brand-navy-700 to-brand-navy-900 text-white"
     >
-      <HeroBackground />
+      {/* Cert Overlay */}
+      {showCert && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4"
+          onClick={() => setShowCert(false)}
+        >
+          <div className="relative w-full max-w-lg" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setShowCert(false)}
+              className="absolute -top-10 right-0 p-2 text-white hover:text-brand-yellow-400"
+            >
+              <X className="h-8 w-8" />
+            </button>
+            <img src={certImg} alt="Business Registration Certificate" className="w-full rounded-lg" />
+          </div>
+        </div>
+      )}
 
+      <HeroBackground />
       <div
         className="pointer-events-none absolute -right-24 -top-24 z-0 h-80 w-80 rounded-full bg-brand-yellow-400/20 blur-3xl"
         aria-hidden="true"
@@ -35,9 +56,9 @@ export default function Hero() {
             Powering Homes. Securing Businesses. Connecting the Future.
           </h1>
 
-          {/* <p className="mx-auto mt-3 max-w-2xl text-xs font-semibold uppercase tracking-wide text-brand-yellow-300 sm:text-sm">
-            Godslight Solars & Technical Services
-          </p> */}
+          <p className="mx-auto mt-4 max-w-2xl text-xs font-bold uppercase tracking-[0.2em] text-brand-yellow-400 sm:text-sm">
+            {siteConfig.motto}
+          </p>
 
           <p className="mx-auto mt-6 max-w-2xl text-base text-gray-200 sm:text-xl">
             From solar power and battery backup to home automation, CCTV, and electrical wiring —
@@ -55,7 +76,15 @@ export default function Hero() {
             </a>
           </div>
 
-          <p className="mt-5 text-xs font-bold tracking-wide text-white">{siteConfig.rcNumber}</p>
+          <div className="mt-5 flex items-center justify-center gap-4 text-xs font-bold tracking-wide text-white">
+            <span>{siteConfig.rcNumber}</span>
+            <button
+              onClick={() => setShowCert(true)}
+              className="underline decoration-brand-yellow-400 underline-offset-4 hover:text-brand-yellow-400 transition"
+            >
+              View Registration Certificate
+            </button>
+          </div>
         </div>
 
         <div className="mx-auto mt-16 hidden grid-cols-3 gap-4 sm:grid sm:gap-8">

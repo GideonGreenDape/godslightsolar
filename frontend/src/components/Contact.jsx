@@ -104,6 +104,19 @@ Message: ${form.message}`;
                 </p>
               </div>
             </div>
+
+            {/* Google Maps Embed */}
+            <div className="card overflow-hidden">
+              <iframe
+                title="Business Location"
+                width="100%"
+                height="300"
+                frameBorder="0"
+                style={{ border: 0 }}
+                src={`https://www.google.com/maps?q=${encodeURIComponent(siteConfig.address)}&output=embed`}
+                allowFullScreen
+              ></iframe>
+            </div>
           </div>
 
           <form onSubmit={handleSubmit} className="card space-y-4 p-6 lg:col-span-3 sm:p-8">
@@ -118,12 +131,12 @@ Message: ${form.message}`;
                   type="text"
                   required
                   value={form.name}
-                  onChange={handleChange}
-                  className="mt-1 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm focus:border-brand-navy-500 focus:outline-none focus:ring-2 focus:ring-brand-navy-200 dark:border-white/10 dark:bg-brand-navy-800/40 dark:text-white"
+                onChange={handleChange}
+                className="mt-1 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm focus:border-brand-navy-500 focus:outline-none focus:ring-2 focus:ring-brand-navy-200 dark:border-white/10 dark:bg-brand-navy-800/40 dark:text-white"
                   placeholder="Jane Doe"
-                />
-              </div>
-              <div>
+              />
+            </div>
+            <div>
                 <label htmlFor="phone" className="text-sm font-semibold text-gray-600 dark:text-gray-200">
                   Phone Number
                 </label>
@@ -135,10 +148,9 @@ Message: ${form.message}`;
                   onChange={handleChange}
                   className="mt-1 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm focus:border-brand-navy-500 focus:outline-none focus:ring-2 focus:ring-brand-navy-200 dark:border-white/10 dark:bg-brand-navy-800/40 dark:text-white"
                   placeholder="+234 800 000 0000"
-                />
-              </div>
+              />
             </div>
-
+        </div>
             <div>
               <label htmlFor="email" className="text-sm font-semibold text-gray-600 dark:text-gray-200">
                 Email Address
